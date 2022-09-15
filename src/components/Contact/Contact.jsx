@@ -33,6 +33,9 @@ const Contact = () => {
         process.env.REACT_APP_EMAIL_JS_API_KEY
       )
       .then(() => {
+        setName("");
+        setEmail("");
+        setMessage("");
         alert("Sent");
       })
       .catch((err) => console.log(err));

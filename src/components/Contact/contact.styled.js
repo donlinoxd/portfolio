@@ -26,7 +26,7 @@ export const Image = styled.img`
     display: block;
   }
 `;
-export const Form = styled.section`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 2rem;

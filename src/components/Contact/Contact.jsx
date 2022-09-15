@@ -23,14 +23,14 @@ const Contact = () => {
 
     emailjs
       .send(
-        process.env.EMAIL_JS_SERVICE_ID,
-        process.env.EMAIL_JS_TEMPLATE_ID,
+        process.env.REACT_APP_EMAIL_JS_SERVICE_ID,
+        process.env.REACT_APP_EMAIL_JS_TEMPLATE_ID,
         {
           name,
           email,
           message,
         },
-        process.env.EMAIL_JS_API_KEY
+        process.env.REACT_APP_EMAIL_JS_API_KEY
       )
       .then(() => {
         alert("Sent");

@@ -60,7 +60,7 @@ const Projects = () => {
               <p>React, Firebase, Redux, TailwindCSS, SWR</p>
             </Detail>
             <a
-              href="https://zeno-films-15e58.web.app/"
+              href="https://zenofilms.vercel.app/"
               rel="noreferrer"
               target="_blank"
             >

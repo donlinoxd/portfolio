@@ -24,10 +24,30 @@ const navItem: Variants = {
     show: { opacity: 1, y: 0 },
 }
 
+const links = [
+    {
+        text: 'Home',
+        href: '/',
+    },
+    {
+        text: 'Works',
+        href: '/works',
+    },
+    {
+        text: 'About',
+        href: '/about',
+    },
+    {
+        text: 'Blogs',
+        href: '/blogs',
+    },
+]
+
 export default function Navbar() {
     const pathname = usePathname()
 
     const [scrolled, setScrolled] = useState(false)
+    const [openSheet, setOpenSheet] = useState(false)
 
     useEffect(() => {
         if (window) {
@@ -37,6 +57,10 @@ export default function Navbar() {
             })
         }
     }, [])
+
+    useEffect(() => {
+        setOpenSheet(false)
+    }, [pathname])
 
     return (
         <div
@@ -56,24 +80,7 @@ export default function Navbar() {
                     />
                 </Link>
                 <motion.ul className='md:flex gap-10 text-lg hidden' variants={navWrapper} initial='hidden' animate='show'>
-                    {[
-                        {
-                            text: 'Home',
-                            href: '/',
-                        },
-                        {
-                            text: 'Works',
-                            href: '/works',
-                        },
-                        {
-                            text: 'About',
-                            href: '/about',
-                        },
-                        {
-                            text: 'Blogs',
-                            href: '/blogs',
-                        },
-                    ].map(({ text, href }) => (
+                    {links.map(({ text, href }) => (
                         <motion.li
                             variants={navItem}
                             key={text}
@@ -88,7 +95,7 @@ export default function Navbar() {
                         </motion.li>
                     ))}
                 </motion.ul>
-                <Sheet>
+                <Sheet onOpenChange={(open) => setOpenSheet(open)} open={openSheet}>
                     <SheetTrigger className='flex md:hidden'>
                         <MdMenu className='-scale-y-150 scale-x-125' />
                     </SheetTrigger>
@@ -97,21 +104,8 @@ export default function Navbar() {
                             <SheetTitle></SheetTitle>
                             <SheetDescription asChild>
                                 <ul className='flex flex-col items-start gap-8'>
-                                    {[
-                                        {
-                                            text: 'About',
-                                            href: '/#about',
-                                        },
-                                        {
-                                            text: 'Services',
-                                            href: '/#services',
-                                        },
-                                        {
-                                            text: 'Meet the Team',
-                                            href: '/#meet-the-team',
-                                        },
-                                    ].map(({ text, href }) => (
-                                        <li key={text} className='border-brand-primary border-l-2 pl-4'>
+                                    {links.map(({ text, href }) => (
+                                        <li key={text} className={cn('pl-4', pathname === href && 'border-brand-primary border-l-2')}>
                                             <Link className='text-white' href={href}>
                                                 {text}
                                             </Link>

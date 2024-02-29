@@ -14,6 +14,8 @@ export const metadata: Metadata = {
         "Explore my work at Lino Escuyos | Portfolio. I'm a frontend developer with experience in JavaScript, TypeScript, React, Next.js, and other UI libraries. I've also dabbled in backend development using Node.js, Express, GraphQL, Firebase, tRPC, MongoDB, and more. Check out my projects for a taste of my knack for creating user-friendly and dynamic web experiences.",
 }
 
+export const runtime = 'edge'
+
 export default function RootLayout({
     children,
 }: Readonly<{

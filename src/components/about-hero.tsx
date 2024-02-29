@@ -59,10 +59,10 @@ export default function AboutHero() {
                 setMouseSide('CENTER')
             }}
         >
-            <div className='container relative h-screen'>
+            <div className='container relative lg:h-screen'>
                 <div
                     className={cn(
-                        'h-1/2 absolute top-[50px] left-0 w-full opacity-0',
+                        'h-screen lg:h-1/2 lg:absolute lg:top-[50px] left-0 w-full opacity-0 relative',
                         debouncedMouseSide === 'CENTER' && 'opacity-100 [transition-duration:1000ms] transition'
                     )}
                 >
@@ -76,10 +76,10 @@ export default function AboutHero() {
                         </p>
                     </div>
                 </div>
-                <div className='absolute top-0 left-0 w-full h-full '>
+                <div className='absolute top-0 left-0 w-full h-full hidden lg:block'>
                     <div
                         className={cn(
-                            'absolute bottom-0 translate-y-[4%] opacity-0 right-1/2 h-1/2 aspect-square text-black',
+                            'absolute bottom-0 translate-y-[4%] opacity-0 right-1/2 h-1/2 max-w-[50vw] aspect-square text-black',
                             debouncedMouseSide === 'LEFT' && 'h-[80%] right-0 opacity-100 transition-all [transition-duration:1000ms]',
                             debouncedMouseSide === 'CENTER' && 'opacity-100 transition-all [transition-duration:1000ms]',
                             debouncedMouseSide === 'RIGHT' && 'opacity-0 pointer-events-none'
@@ -89,7 +89,7 @@ export default function AboutHero() {
                     </div>
                     <div
                         className={cn(
-                            'absolute bottom-0 opacity-0 left-1/2 h-1/2 aspect-square text-black',
+                            'absolute bottom-0 opacity-0 left-1/2 h-1/2 max-w-[50vw] aspect-square text-black',
                             debouncedMouseSide === 'RIGHT' && 'h-[80%] left-0 opacity-100 transition-all [transition-duration:1000ms]',
                             debouncedMouseSide === 'CENTER' && 'opacity-100 transition-all [transition-duration:1000ms]',
                             debouncedMouseSide === 'LEFT' && 'opacity-0 pointer-events-none'
@@ -98,11 +98,11 @@ export default function AboutHero() {
                         <Image src='/images/animated_designer.svg' alt='animated programmer' fill className='object-contain' />
                     </div>
                 </div>
-                <div className='w-full h-full flex justify-between items-end relative'>
+                <div className='w-full h-full flex justify-between lg:items-end relative lg:flex-row flex-col gap-24 lg:gap-0'>
                     <div
                         className={cn(
-                            'flex flex-col w-[45%] items-center justify-center gap-4 opacity-0 h-3/4',
-                            debouncedMouseSide === 'LEFT' && 'opacity-100 transition-all duration-1000'
+                            'flex flex-col lg:w-[45%] items-center justify-center gap-4 lg:opacity-0 h-3/4',
+                            debouncedMouseSide === 'LEFT' && 'lg:opacity-100 transition-all duration-1000'
                         )}
                     >
                         <h2 className='flex items-center text-3xl font-semibold'>
@@ -131,8 +131,8 @@ export default function AboutHero() {
 
                     <div
                         className={cn(
-                            'flex flex-col w-[45%] items-center justify-center gap-4 opacity-0 h-3/4',
-                            debouncedMouseSide === 'RIGHT' && 'opacity-100 transition-all duration-1000'
+                            'flex flex-col lg:w-[45%] items-center justify-center gap-4 lg:opacity-0 h-3/4',
+                            debouncedMouseSide === 'RIGHT' && 'lg:opacity-100 transition-all duration-1000'
                         )}
                     >
                         <h2 className='flex items-center text-3xl font-semibold'>DESIGNER</h2>

@@ -1,8 +1,7 @@
-import Particles from '@/components/particles'
+import { BackgroundBeams } from '@/components/background-beams'
 import ProjectHeader from '@/components/project-header'
 import ProjectsSection from '@/components/projects-section'
 import { Metadata } from 'next'
-import Script from 'next/script'
 
 export const metadata: Metadata = {
     title: 'Works | Lino Escuyos',
@@ -12,14 +11,12 @@ export const metadata: Metadata = {
 
 export default function WorksPage() {
     return (
-        <>
-            <div className='flex flex-col'>
+        <div className='flex flex-col'>
+            <div className='relative'>
                 <ProjectHeader />
-                <ProjectsSection />
+                <BackgroundBeams />
             </div>
-            <div id='particles-js' className=' h-screen absolute top-0 z-[10] w-full' />
-            <Script src='http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js'></Script>
-            <Particles />
-        </>
+            <ProjectsSection />
+        </div>
     )
 }

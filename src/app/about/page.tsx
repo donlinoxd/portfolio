@@ -1,7 +1,6 @@
 import AboutHero from '@/components/about-hero'
-import Particles from '@/components/particles'
+import { BackgroundBeams } from '@/components/background-beams'
 import { Metadata } from 'next'
-import Script from 'next/script'
 
 export const metadata: Metadata = {
     title: 'About | Lino Escuyos',
@@ -11,14 +10,10 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
     return (
-        <>
-            <div className='w-full text-white min-h-screen bg-black overflow-x-hidden'>
-                <AboutHero />
-                <div className='my-20'>Experience</div>
-            </div>
-            <div id='particles-js' className='w-full h-screen absolute top-0 z-[10] pointer-events-none' />
-            <Script src='http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js'></Script>
-            <Particles />
-        </>
+        <div className='w-full text-white min-h-screen bg-black overflow-x-hidden'>
+            <AboutHero />
+            <div className='my-20'>Experience</div>
+            <BackgroundBeams />
+        </div>
     )
 }

@@ -1,4 +1,3 @@
-import { BackgroundBeams } from '@/components/background-beams'
 import PrimaryButton from '@/components/primary-button'
 import SocialLinks from '@/components/social-links'
 import { Metadata } from 'next'
@@ -16,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
     return (
-        <div className='[background:radial-gradient(50vw_50vw_at_50%_65%,#170000_0%,_#130000_26%,_#000_100%),#000] md:[background:radial-gradient(25vw_25vw_at_65%_50%,#170000_0%,_#130000_26%,_#000_100%),#000] overflow-x-hidden relative'>
+        <div className='overflow-x-hidden relative'>
             <div className='container flex h-screen flex-col md:flex-row justify-center md:justify-normal gap-8 md:gap-0'>
                 <div className='relative w-full md:w-1/2 md:h-full z-[100] grid place-items-center'>
                     <div className='relative w-4/5 max-w-[350px] md:max-w-full aspect-square [transform:rotateY(180deg)] pointer-events-none after:bg-white after:absolute after:[content:" "] after:h-full after:animate-fill-text'>
@@ -66,7 +65,6 @@ export default function Home() {
                     <SocialLinks />
                 </div>
             </div>
-            <BackgroundBeams className='min-w-[1200px]' />
         </div>
     )
 }

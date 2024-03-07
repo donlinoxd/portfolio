@@ -1,4 +1,3 @@
-import { BackgroundBeams } from '@/components/background-beams'
 import ProjectHeader from '@/components/project-header'
 import ProjectsSection from '@/components/projects-section'
 import { Metadata } from 'next'
@@ -14,7 +13,6 @@ export default function WorksPage() {
         <div className='flex flex-col'>
             <div className='relative'>
                 <ProjectHeader />
-                <BackgroundBeams />
             </div>
             <ProjectsSection />
         </div>

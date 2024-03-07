@@ -1,4 +1,5 @@
 import AnimatePresenceWrapper from '@/components/animate-presence'
+import { BackgroundBeams } from '@/components/background-beams'
 import Navbar from '@/components/navbar'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
@@ -25,6 +26,9 @@ export default function RootLayout({
         <html lang='en' className='scrollbar'>
             <body className={fira_sans.className + ' bg-black text-white [&::-webkikt-scrollbar]:hidden ' + fira_sans.variable}>
                 <Navbar />
+                <div className='fixed top-0 left-0 w-full h-screen overflow-hidden'>
+                    <BackgroundBeams className='min-w-[1200px]' />
+                </div>
                 <AnimatePresenceWrapper>{children}</AnimatePresenceWrapper>
                 <Analytics />
                 <SpeedInsights />

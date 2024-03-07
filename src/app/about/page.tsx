@@ -1,5 +1,4 @@
 import AboutHero from '@/components/about-hero'
-import { BackgroundBeams } from '@/components/background-beams'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -13,7 +12,6 @@ export default function AboutPage() {
         <div className='w-full text-white min-h-screen bg-black overflow-x-hidden'>
             <AboutHero />
             <div className='my-20'>Experience</div>
-            <BackgroundBeams />
         </div>
     )
 }

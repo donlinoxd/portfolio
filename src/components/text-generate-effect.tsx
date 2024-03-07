@@ -7,16 +7,20 @@ export const TextGenerateEffect = ({ words, className }: { words: string; classN
     const [scope, animate] = useAnimate()
     let wordsArray = words.split(' ')
     useEffect(() => {
-        animate(
-            'span',
-            {
-                opacity: 1,
-            },
-            {
-                duration: 2,
-                delay: stagger(0.2),
-            }
-        )
+        if (window) {
+            setTimeout(() => {
+                animate(
+                    'span',
+                    {
+                        opacity: 1,
+                    },
+                    {
+                        duration: 2,
+                        delay: stagger(0.2),
+                    }
+                )
+            }, 1000)
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [scope.current])
 

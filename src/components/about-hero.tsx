@@ -5,6 +5,7 @@ import cn from '@/utils/cn'
 import Image from 'next/image'
 import { MouseEventHandler, useEffect, useRef, useState } from 'react'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
+import { TextGenerateEffect } from './text-generate-effect'
 
 export default function AboutHero() {
     const [mouseSide, setMouseSide] = useState<'LEFT' | 'RIGHT' | 'CENTER'>('CENTER')
@@ -68,12 +69,13 @@ export default function AboutHero() {
                 >
                     <div className='max-w-[500px] w-full h-full flex flex-col items-center justify-center mx-auto gap-2 text-center'>
                         <h1 className='font-medium text-2xl'>I am Lino,</h1>
-                        <p className='font-light text-gray-200'>
-                            an experienced front-end web developer with a passion for creating awesome things on the internet. I love bringing ideas
-                            to life through code and design. When I&apos;m not typing away at my keyboard, you can find me exploring new technologies,
+                        <TextGenerateEffect
+                            words="an experienced front-end web developer with a passion for creating awesome things on the internet. I love bringing ideas
+                            to life through code and design. When I'm not typing away at my keyboard, you can find me exploring new technologies,
                             sipping on coffee, or enjoying the great outdoors. I believe in continuous learning and strive to improve my skills every
-                            day. Let&apos;s connect and build something amazing together!
-                        </p>
+                            day. Let's connect and build something amazing together!"
+                            className='font-light text-gray-200'
+                        />
                     </div>
                 </div>
                 <div className='absolute top-0 left-0 w-full h-full hidden lg:block'>

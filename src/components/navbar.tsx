@@ -38,8 +38,8 @@ const links = [
         href: '/about',
     },
     {
-        text: 'Blogs',
-        href: '/blogs',
+        text: 'Contact Me',
+        href: '/contact-me',
     },
 ]
 

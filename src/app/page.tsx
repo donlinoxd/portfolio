@@ -2,6 +2,7 @@ import PrimaryButton from '@/components/primary-button'
 import SocialLinks from '@/components/social-links'
 import { Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import { LuDownload } from 'react-icons/lu'
 
 export const metadata: Metadata = {
@@ -48,7 +49,9 @@ export default function Home() {
                             </p>
                         </div>
                         <div className='flex mt-6 gap-8 items-center after:bg-white after:absolute relative after:[content:" "] after:h-full after:animate-fill-text z-[100]'>
-                            <PrimaryButton />
+                            <Link href='/contact-me'>
+                                <PrimaryButton />
+                            </Link>
                             <a
                                 href='/files/updated_resume.pdf'
                                 target='_blank'

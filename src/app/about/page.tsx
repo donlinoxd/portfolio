@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
     return (
-        <div className='w-full text-white min-h-screen bg-black overflow-x-hidden'>
+        <div className='w-full text-white min-h-screen bg-black overflow-x-hidden animate-opacity opacity-0'>
             <AboutHero />
             <ExperienceSection />
         </div>

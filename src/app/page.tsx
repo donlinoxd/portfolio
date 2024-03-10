@@ -19,36 +19,36 @@ export default function Home() {
         <div className='overflow-x-hidden relative'>
             <div className='container flex h-screen flex-col md:flex-row justify-center md:justify-normal gap-8 md:gap-0'>
                 <div className='relative w-full md:w-1/2 md:h-full z-[100] grid place-items-center'>
-                    <div className='relative w-4/5 max-w-[350px] md:max-w-full aspect-square [transform:rotateY(180deg)] pointer-events-none after:bg-white after:absolute after:[content:" "] after:h-full after:animate-fill-text'>
+                    <div className='relative w-4/5 max-w-[350px] md:max-w-full aspect-square [transform:rotateY(180deg)] pointer-events-none animate-text-fill'>
                         <Image
                             src='/images/dev.png'
                             alt='hero image'
                             fill
-                            className='object-contain animate-opacity-text opacity-0'
+                            className='object-contain'
                             sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                         />
                     </div>
                 </div>
                 <div className='w-full md:w-1/2 md:h-full flex justify-center flex-col '>
                     <div className='flex flex-col gap-2 md:gap-6 md:items-start items-center text-center md:text-left'>
-                        <div className='text-xl md:text-2xl lg:text-4xl after:bg-white after:absolute relative after:[content:" "] after:h-full after:animate-fill-text'>
-                            <span className='animate-opacity-text opacity-0'>Hello! I am</span>
+                        <div className='text-xl md:text-2xl lg:text-4xl animate-text-fill'>
+                            <span className=''>Hello! I am</span>
                         </div>
-                        <h1 className='text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold mb-4 leading-[102%] md:leading-[115%] after:bg-white after:absolute relative after:[content:" "] after:h-full after:animate-fill-text'>
-                            <span className='animate-opacity-text opacity-0'>Lino Escuyos.</span>
+                        <h1 className='text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold mb-4 leading-[102%] md:leading-[115%] animate-text-fill'>
+                            <span>Lino Escuyos.</span>
                         </h1>
-                        <div className='text-base md:text-lg lg:text-xl flex flex-col gap-1 after:bg-white after:absolute relative after:[content:" "] after:h-full after:animate-fill-text'>
-                            <p className='animate-opacity-text opacity-0'>
+                        <div className='text-base md:text-lg lg:text-xl flex flex-col gap-1 animate-text-fill'>
+                            <p>
                                 <span className='italic font-medium'>Not Your </span>{' '}
                                 <span className='italic font-medium line-through text-gray-400'>Average</span> Frontend Developer.
                             </p>
-                            <p className='animate-opacity-text opacity-0'>
+                            <p>
                                 As a skilled developer, I am passionate about transforming your{' '}
                                 <span className='italic font-medium text-red-500'>vision</span> into{' '}
                                 <span className='italic font-medium text-red-500'>innovative web applications</span> thru lines of code.
                             </p>
                         </div>
-                        <div className='flex mt-6 gap-8 items-center after:bg-white after:absolute relative after:[content:" "] after:h-full after:animate-fill-text z-[100]'>
+                        <div className='flex mt-6 gap-8 items-center animate-text-fill z-[100]'>
                             <Link href='/contact-me'>
                                 <PrimaryButton />
                             </Link>

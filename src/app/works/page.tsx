@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function WorksPage() {
     return (
-        <div className='flex flex-col'>
+        <div className='flex flex-col animate-opacity opacity-0'>
             <div className='relative'>
                 <ProjectHeader />
             </div>

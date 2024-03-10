@@ -15,8 +15,7 @@ const config: Config = {
                 white: '#FAFAFA',
             },
             animation: {
-                'fill-text': '1s cubic-bezier(0.19, 1, 0.22, 1) 0.5s 1 normal forwards running fill-text',
-                'opacity-text': '0.0001s linear 1s 1 normal forwards running opacity-text',
+                opacity: 'opacity 1s linear 0.5s 1 normal forwards running',
             },
             keyframes: {
                 'fill-text': {
@@ -33,7 +32,7 @@ const config: Config = {
                         width: '0%',
                     },
                 },
-                'opacity-text': {
+                opacity: {
                     '0%': {
                         opacity: '0%',
                     },

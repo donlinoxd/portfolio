@@ -17,7 +17,7 @@ export const metadata = {
 
 const ContactUsPage = () => {
     return (
-        <div className='w-full min-h-screen flex flex-col container pt-[120px] pb-[24px] gap-14'>
+        <div className='w-full min-h-screen flex flex-col container pt-[120px] pb-[24px] gap-14 animate-opacity opacity-0'>
             <header className='text-slate-200 text-5xl md:text-7xl lg:text-8xl px-[5%] gap-4 md:gap-0'>
                 <h1>Contact Me</h1>
                 <div className='flex gap-2 items-center justify-center w-full opacity-50'>

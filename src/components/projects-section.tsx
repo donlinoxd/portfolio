@@ -69,38 +69,36 @@ export default function ProjectsSection() {
 
     return (
         <div className='flex relative bg-gray-50 text-black py-28 lg:px-[8%] min-h-[calc((320px+140vh)*5)] w-full'>
-            <div className='px-[5%] text-center lg:text-start lg:px-0 items-center w-full lg:w-1/2 flex flex-col sticky top-0 lg:top-[120px] h-[calc(100vh+70px)] lg:h-[calc(100vh-240px)] justify-center gap-11 lg:gap-0 lg:justify-between lg:items-start z-10 bg-white/50 lg:bg-none backdrop-blur-sm lg:backdrop-blur-none '>
+            <div className='px-[5%] text-center lg:text-start lg:px-0 items-center w-full lg:w-1/2 flex flex-col sticky top-0 lg:top-[120px] h-[calc(100vh+70px)] lg:h-[calc(100vh-240px)] justify-center gap-11 lg:gap-0 lg:justify-between lg:items-start z-[9999999999999] bg-white/50 lg:bg-none backdrop-blur-sm lg:backdrop-blur-none '>
                 {works.map(
                     ({ description, project, role, liveUrl }, idx) =>
                         activeIndex === idx && (
                             <>
-                                <div className='after:bg-black after:absolute relative after:[content:" "] after:h-full after:animate-fill-text after:[animation-delay:0s]'>
-                                    <span className='text-3xl sm:text-4xl lg:text-5xl font-semibold animate-opacity-text [animation-delay:0.5s] opacity-0'>
+                                <div className='after:bg-black after:absolute animate-text-fill after:[animation-delay:0s]'>
+                                    <span className='text-3xl sm:text-4xl lg:text-5xl font-semibold [animation-delay:0.5s!important]'>
                                         0{idx + 1}
                                     </span>
                                 </div>
                                 <div className='flex flex-col gap-4 px-[5%] lg:items-start items-center'>
-                                    <div className='after:bg-black after:absolute relative mb-10 after:[content:" "] after:h-full after:animate-fill-text after:[animation-delay:0s] after:top-0'>
-                                        <h2 className='text-3xl sm:text-5xl lg:text-7xl font-medium tracking-wide animate-opacity-text [animation-delay:0.5s] opacity-0'>
+                                    <div className='after:bg-black after:absolute relative mb-10 animate-text-fill after:[animation-delay:0s] after:top-0'>
+                                        <h2 className='text-3xl sm:text-5xl lg:text-7xl font-medium tracking-wide [animation-delay:0.5s!important]'>
                                             {project}
                                         </h2>
                                     </div>
-                                    <div className='after:bg-black after:absolute relative after:[content:" "] after:h-full after:animate-fill-text after:[animation-delay:0s] after:top-0'>
-                                        <p className='text-lg sm:text-xl lg:text-2xl text-black/80 animate-opacity-text [animation-delay:0.5s] opacity-0'>
-                                            {role}
-                                        </p>
+                                    <div className='after:bg-black after:absolute animate-text-fill after:[animation-delay:0s] after:top-0'>
+                                        <p className='text-lg sm:text-xl lg:text-2xl text-black/80 [animation-delay:0.5s!important]'>{role}</p>
                                     </div>
-                                    <div className='after:bg-black after:absolute relative after:[content:" "] after:h-full after:animate-fill-text after:[animation-delay:0s] after:top-0'>
-                                        <p className='text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black/90 animate-opacity-text [animation-delay:0.5s] opacity-0'>
+                                    <div className='after:bg-black after:absolute animate-text-fill after:[animation-delay:0s] after:top-0'>
+                                        <p className='text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black/90 [animation-delay:0.5s!important]'>
                                             {description}
                                         </p>
                                     </div>
                                 </div>
-                                <div className='after:bg-black after:absolute relative after:[content:" "] after:h-full after:animate-fill-text after:[animation-delay:0s]'>
+                                <div className='after:bg-black after:absolute animate-text-fill after:[animation-delay:0s]'>
                                     <Link
                                         href={liveUrl}
                                         target='_blank'
-                                        className='text-xl sm:text-2xl lg:text-3xl font-medium tracking-wide animate-opacity-text [animation-delay:0.5s] opacity-0 hover:underline underline-offset-4'
+                                        className='text-xl sm:text-2xl lg:text-3xl font-medium tracking-text [animation-delay:0.5s!important] hover:underline underline-offset-4'
                                     >
                                         LIVE SITE
                                     </Link>

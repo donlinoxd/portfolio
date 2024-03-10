@@ -122,3 +122,45 @@
         stroke-dashoffset: 370%;
     }
 }
+.animate-text-fill {
+    position: relative;
+}
+
+.animate-text-fill::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: white;
+    animation: fill-text 1s cubic-bezier(0.19, 1, 0.22, 1) 0.5s 1 normal forwards running;
+}
+
+.animate-text-fill > * {
+    animation: opacity-text 0.01s linear 1s 1 normal forwards running;
+    opacity: 0;
+}
+
+@keyframes fill-text {
+    0% {
+        left: 0px;
+        width: 0%;
+    }
+    50% {
+        left: 0%;
+        width: 100%;
+    }
+    100% {
+        left: 100%;
+        width: 0%;
+    }
+}
+
+@keyframes opacity-text {
+    0% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}

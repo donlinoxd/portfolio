@@ -1,7 +1,6 @@
 'use client'
 
 import cn from '@/utils/cn'
-import { Variants, motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -9,20 +8,20 @@ import { useEffect, useState } from 'react'
 import { MdMenu } from 'react-icons/md'
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from './sheet'
 
-const container: Variants = {
-    hidden: { opacity: 0, y: '-100%' },
-    show: { opacity: 1, y: '0', transition: { delay: 0.75 } },
-}
+// const container: Variants = {
+//     hidden: { opacity: 0, y: '-100%' },
+//     show: { opacity: 1, y: '0', transition: { delay: 0.75 } },
+// }
 
-const navWrapper: Variants = {
-    hidden: { opacity: 0 },
-    show: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.75 } },
-}
+// const navWrapper: Variants = {
+//     hidden: { opacity: 0 },
+//     show: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.75 } },
+// }
 
-const navItem: Variants = {
-    hidden: { opacity: 0, y: -32 },
-    show: { opacity: 1, y: 0 },
-}
+// const navItem: Variants = {
+//     hidden: { opacity: 0, y: -32 },
+//     show: { opacity: 1, y: 0 },
+// }
 
 const links = [
     {
@@ -69,7 +68,7 @@ export default function Navbar() {
                 scrolled && 'h-[32px] bg-black lg:h-[48px]'
             )}
         >
-            <motion.div initial='hidden' animate='show' variants={container} className='container flex justify-between items-center'>
+            <div className='container flex justify-between items-center animate-opacity [animation-duration:1s] [animation-delay:0.75s] opacity-0'>
                 <Link href='/' className='relative h-full aspect-square'>
                     <Image
                         src='/images/logo_dark.png'
@@ -79,10 +78,9 @@ export default function Navbar() {
                         sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                     />
                 </Link>
-                <motion.ul className='md:flex gap-10 text-lg hidden' variants={navWrapper} initial='hidden' animate='show'>
+                <ul className='md:flex gap-10 text-lg hidden'>
                     {links.map(({ text, href }) => (
-                        <motion.li
-                            variants={navItem}
+                        <li
                             key={text}
                             className={cn(
                                 'after:transition-all after:hover:w-full relative py-2 after:[content:" "] after:absolute after:bottom-0 after:left-0 after:h-[3px] after:bg-white after:rounded-full',
@@ -92,9 +90,9 @@ export default function Navbar() {
                             <Link href={href} className='py-2'>
                                 {text}
                             </Link>
-                        </motion.li>
+                        </li>
                     ))}
-                </motion.ul>
+                </ul>
                 <Sheet onOpenChange={(open) => setOpenSheet(open)} open={openSheet}>
                     <SheetTrigger className='flex md:hidden'>
                         <MdMenu className='-scale-y-150 scale-x-125' />
@@ -116,7 +114,7 @@ export default function Navbar() {
                         </SheetHeader>
                     </SheetContent>
                 </Sheet>
-            </motion.div>
+            </div>
         </div>
     )
 }

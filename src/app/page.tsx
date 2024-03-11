@@ -39,8 +39,7 @@ export default function Home() {
                         </h1>
                         <div className='text-base md:text-lg lg:text-xl flex flex-col gap-1 animate-text-fill'>
                             <p>
-                                <span className='italic font-medium'>Not Your </span>{' '}
-                                <span className='italic font-medium line-through text-gray-400'>Average</span> Frontend Developer.
+                                <span className='italic font-medium line-through text-gray-400'>Not Your Average</span> Frontend Developer.
                             </p>
                             <p>
                                 As a skilled developer, I am passionate about transforming your{' '}

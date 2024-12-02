@@ -80,7 +80,7 @@ const experiences = [
     },
     {
         title: 'Web Developer',
-        company: 'DashRD LLC',
+        company: 'Eldorado LLC',
         duration: '2022 — 2023',
         description:
             "I specialized in enhancing user experiences through the implementation of reusable components and responsive design techniques, ensuring that clients' websites were both visually appealing and easy to navigate. I seamlessly integrated APIs to facilitate smooth data exchange and created engaging data visualizations to captivate their audience. Moreover, I optimized website performance to guarantee faster load times and improve SEO rankings, ultimately driving more traffic to their platforms. With a collaborative approach, I worked closely with cross-functional teams to deliver top-notch web solutions that exceeded expectations and elevated their online presence.",

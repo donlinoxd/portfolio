@@ -1,3 +1,4 @@
+import CustomCursor from '@/components/custom-cursor'
 import GrainCanvas from '@/components/grain-canvas'
 import Navbar from '@/components/navbar'
 import { Analytics } from '@vercel/analytics/react'
@@ -27,7 +28,8 @@ export default function RootLayout({
 }>) {
     return (
         <html lang='en'>
-            <body className={`${fira_sans.className} ${fira_sans.variable} bg-black text-white`}>
+            <body className={`${fira_sans.className} ${fira_sans.variable} bg-black text-white cursor-none`}>
+                <CustomCursor />
                 <GrainCanvas />
                 <Navbar />
                 {children}

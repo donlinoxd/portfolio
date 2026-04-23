@@ -1,5 +1,4 @@
-import AnimatePresenceWrapper from '@/components/animate-presence'
-import { BackgroundBeams } from '@/components/background-beams'
+import GrainCanvas from '@/components/grain-canvas'
 import Navbar from '@/components/navbar'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
@@ -7,12 +6,16 @@ import type { Metadata } from 'next'
 import { Fira_Sans } from 'next/font/google'
 import './globals.css'
 
-const fira_sans = Fira_Sans({ subsets: ['latin'], weight: ['100', '200', '400', '500', '700', '900'], variable: '--font-fira-sans' })
+const fira_sans = Fira_Sans({
+    subsets: ['latin'],
+    weight: ['100', '200', '400', '500', '700', '900'],
+    variable: '--font-fira-sans',
+})
 
 export const metadata: Metadata = {
-    title: 'Portfolio | Lino Escuyos',
+    title: 'Lino Escuyos | Frontend Developer',
     description:
-        "Explore my work at Lino Escuyos | Portfolio. I'm a frontend developer with experience in JavaScript, TypeScript, React, Next.js, and other UI libraries. I've also dabbled in backend development using Node.js, Express, GraphQL, Firebase, tRPC, MongoDB, and more. Check out my projects for a taste of my knack for creating user-friendly and dynamic web experiences.",
+        "Lino Escuyos Jr. — Frontend Developer specializing in React, Next.js, TypeScript, and modern UI. Building clean, fast, and impactful digital experiences.",
 }
 
 export const runtime = 'edge'
@@ -23,13 +26,11 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <html lang='en' className='scrollbar'>
-            <body className={fira_sans.className + ' bg-black text-white [&::-webkikt-scrollbar]:hidden ' + fira_sans.variable}>
+        <html lang='en'>
+            <body className={`${fira_sans.className} ${fira_sans.variable} bg-black text-white`}>
+                <GrainCanvas />
                 <Navbar />
-                <div className='absolute top-0 left-0 w-full h-screen overflow-hidden pointer-events-none'>
-                    <BackgroundBeams className='min-w-[1200px]' />
-                </div>
-                <AnimatePresenceWrapper>{children}</AnimatePresenceWrapper>
+                {children}
                 <Analytics />
                 <SpeedInsights />
             </body>

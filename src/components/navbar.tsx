@@ -1,120 +1,86 @@
 'use client'
 
 import cn from '@/utils/cn'
-import Image from 'next/image'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { MdMenu } from 'react-icons/md'
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from './sheet'
-
-// const container: Variants = {
-//     hidden: { opacity: 0, y: '-100%' },
-//     show: { opacity: 1, y: '0', transition: { delay: 0.75 } },
-// }
-
-// const navWrapper: Variants = {
-//     hidden: { opacity: 0 },
-//     show: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.75 } },
-// }
-
-// const navItem: Variants = {
-//     hidden: { opacity: 0, y: -32 },
-//     show: { opacity: 1, y: 0 },
-// }
+import { MdClose, MdMenu } from 'react-icons/md'
 
 const links = [
-    {
-        text: 'Home',
-        href: '/',
-    },
-    {
-        text: 'Works',
-        href: '/works',
-    },
-    {
-        text: 'About',
-        href: '/about',
-    },
-    {
-        text: 'Contact Me',
-        href: '/contact-me',
-    },
+    { text: 'Work', href: '#work' },
+    { text: 'About', href: '#about' },
+    { text: 'Skills', href: '#skills' },
 ]
 
 export default function Navbar() {
-    const pathname = usePathname()
-
     const [scrolled, setScrolled] = useState(false)
-    const [openSheet, setOpenSheet] = useState(false)
+    const [mobileOpen, setMobileOpen] = useState(false)
 
     useEffect(() => {
-        if (window) {
-            window.addEventListener('scroll', (e) => {
-                if (scrollY >= 250) setScrolled(true)
-                else setScrolled(false)
-            })
-        }
+        const handler = () => setScrolled(window.scrollY >= 50)
+        window.addEventListener('scroll', handler)
+        return () => window.removeEventListener('scroll', handler)
     }, [])
 
-    useEffect(() => {
-        setOpenSheet(false)
-    }, [pathname])
-
     return (
-        <div
+        <header
             className={cn(
-                'fixed left-0 top-0 z-[99] flex h-[60px] w-full bg-transparent transition-all duration-500 lg:h-[90px]',
-                scrolled && 'h-[32px] bg-black lg:h-[48px]'
+                'fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-5',
+                scrolled && 'bg-black/90 backdrop-blur-sm py-3'
             )}
         >
-            <div className='container flex justify-between items-center animate-opacity [animation-duration:1s] [animation-delay:0.75s] opacity-0'>
-                <Link href='/' className='relative h-full aspect-square'>
-                    <Image
-                        src='/images/logo_dark.png'
-                        alt='Logo dark'
-                        fill
-                        className='object-contain'
-                        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-                    />
-                </Link>
-                <ul className='md:flex gap-10 text-lg hidden'>
+            <div className='container flex items-center justify-between'>
+                <a href='#hero' className='text-white font-bold text-2xl tracking-tighter'>
+                    LINO<span className='text-neutral-400'>.</span>
+                </a>
+
+                <nav className='hidden md:flex items-center space-x-8'>
                     {links.map(({ text, href }) => (
-                        <li
+                        <a
                             key={text}
-                            className={cn(
-                                'after:transition-all after:hover:w-full relative py-2 after:[content:" "] after:absolute after:bottom-0 after:left-0 after:h-[3px] after:bg-white after:rounded-full',
-                                pathname === href ? 'after:w-full' : 'after:w-0'
-                            )}
+                            href={href}
+                            className='text-neutral-400 hover:text-white transition-colors text-sm uppercase tracking-widest'
                         >
-                            <Link href={href} className='py-2'>
-                                {text}
-                            </Link>
-                        </li>
+                            {text}
+                        </a>
                     ))}
-                </ul>
-                <Sheet onOpenChange={(open) => setOpenSheet(open)} open={openSheet}>
-                    <SheetTrigger className='flex md:hidden'>
-                        <MdMenu className='-scale-y-150 scale-x-125' />
-                    </SheetTrigger>
-                    <SheetContent className='z-[200] border-l-white/10 bg-black text-white'>
-                        <SheetHeader className='pt-10'>
-                            <SheetTitle></SheetTitle>
-                            <SheetDescription asChild>
-                                <ul className='flex flex-col items-start gap-8'>
-                                    {links.map(({ text, href }) => (
-                                        <li key={text} className={cn('pl-4', pathname === href && 'border-brand-primary border-l-2')}>
-                                            <Link className='text-white' href={href}>
-                                                {text}
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </SheetDescription>
-                        </SheetHeader>
-                    </SheetContent>
-                </Sheet>
+                </nav>
+
+                <div className='hidden md:block'>
+                    <a
+                        href='#contact'
+                        className='border border-white px-5 py-2 text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-colors'
+                    >
+                        Contact
+                    </a>
+                </div>
+
+                <button className='md:hidden text-white' onClick={() => setMobileOpen(!mobileOpen)} aria-label='Toggle menu'>
+                    {mobileOpen ? <MdClose size={24} /> : <MdMenu size={24} />}
+                </button>
             </div>
-        </div>
+
+            {mobileOpen && (
+                <div className='md:hidden bg-black/95 backdrop-blur-sm border-t border-white/10 mt-2'>
+                    <div className='container py-6 flex flex-col gap-6'>
+                        {links.map(({ text, href }) => (
+                            <a
+                                key={text}
+                                href={href}
+                                onClick={() => setMobileOpen(false)}
+                                className='text-neutral-400 hover:text-white text-sm uppercase tracking-widest'
+                            >
+                                {text}
+                            </a>
+                        ))}
+                        <a
+                            href='#contact'
+                            onClick={() => setMobileOpen(false)}
+                            className='border border-white px-5 py-2 text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-colors text-center'
+                        >
+                            Contact
+                        </a>
+                    </div>
+                </div>
+            )}
+        </header>
     )
 }

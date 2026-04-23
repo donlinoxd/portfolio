@@ -1,8 +1,5 @@
 'use client'
 
-import { Form, FormLabel, FormMessage } from '@/components/form'
-import { Input } from '@/components/input'
-import cn from '@/utils/cn'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { LuLoader } from 'react-icons/lu'
@@ -15,91 +12,87 @@ const formSchema = z.object({
     details: z.string().min(10, 'Details must be at least 10 characters').max(500, 'Details must be less than 500 characters'),
 })
 
+type FormValues = z.infer<typeof formSchema>
+
 export default function ContactMeForm() {
-    const form = useForm<z.infer<typeof formSchema>>({
+    const {
+        register,
+        handleSubmit,
+        reset,
+        clearErrors,
+        setError,
+        formState: { isLoading, isSubmitting, isSubmitSuccessful, errors },
+    } = useForm<FormValues>({
         resolver: zodResolver(formSchema),
-        defaultValues: {
-            name: '',
-            email: '',
-            subject: '',
-            details: '',
-        },
+        defaultValues: { name: '', email: '', subject: '', details: '' },
     })
 
-    const {
-        formState: { isLoading, isSubmitting, isSubmitSuccessful, errors },
-    } = form
-
-    const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        console.log(values)
-
-        const data = await fetch('/api/send', {
+    const onSubmit = async (values: FormValues) => {
+        const res = await fetch('/api/send', {
             method: 'POST',
             body: JSON.stringify(values),
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
         })
 
-        if (data.status === 200) {
-            form.reset()
-            form.clearErrors()
-            return
+        if (res.status === 200) {
+            reset()
+            clearErrors()
         } else {
-            console.log(await data.json())
-            form.setError('root', { message: 'Something went wrong. Please try again!' })
-            alert('Something went wrong. Please try again later!')
+            setError('root', { message: 'Something went wrong. Please try again!' })
         }
     }
 
+    const inputClass =
+        'w-full bg-white/5 border-2 border-white/20 p-3 text-white placeholder:text-white/30 focus:border-white focus:outline-none transition-colors text-sm'
+
+    const labelClass = 'block text-xs uppercase tracking-widest text-white/60 mb-2'
+
     return (
-        <Form {...form}>
-            <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className='max-w-[600px] w-[90%] mx-auto md:mx-0 md:w-1/2 text-slate-100 flex-col gap-4 flex'
+        <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
+            <div>
+                <label className={labelClass}>Name</label>
+                <input {...register('name')} placeholder='Your name' className={inputClass} />
+                {errors.name && <p className='text-white/50 text-xs mt-1 uppercase tracking-widest'>{errors.name.message}</p>}
+            </div>
+
+            <div>
+                <label className={labelClass}>Email</label>
+                <input {...register('email')} type='email' placeholder='your.email@example.com' className={inputClass} />
+                {errors.email && <p className='text-white/50 text-xs mt-1 uppercase tracking-widest'>{errors.email.message}</p>}
+            </div>
+
+            <div>
+                <label className={labelClass}>Subject</label>
+                <input {...register('subject')} placeholder='Subject' className={inputClass} />
+                {errors.subject && <p className='text-white/50 text-xs mt-1 uppercase tracking-widest'>{errors.subject.message}</p>}
+            </div>
+
+            <div>
+                <label className={labelClass}>Message</label>
+                <textarea
+                    {...register('details')}
+                    rows={5}
+                    placeholder='Tell me about your project...'
+                    className={`${inputClass} resize-none`}
+                />
+                {errors.details && <p className='text-white/50 text-xs mt-1 uppercase tracking-widest'>{errors.details.message}</p>}
+            </div>
+
+            {errors.root && <p className='text-white/50 text-xs uppercase tracking-widest'>{errors.root.message}</p>}
+
+            <button
+                type='submit'
+                disabled={isSubmitting || isLoading}
+                className='w-full uppercase tracking-widest bg-white text-black px-6 py-3 text-sm hover:bg-white/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2'
             >
-                <div className='flex space-y-2 flex-col'>
-                    <FormLabel htmlFor='name'>Your Name</FormLabel>
-                    <Input placeholder='Your Name' id='name' {...form.register('name')} className='h-12 bg-black' />
-                    <FormMessage className='text-red-500'>{errors.name?.message}</FormMessage>
-                </div>
-                <div className='flex space-y-2 flex-col'>
-                    <FormLabel htmlFor='email'>Email Address</FormLabel>
-                    <Input placeholder='Your Email Address' id='email' {...form.register('email')} className='h-12 bg-black' />
-                    <FormMessage className='text-red-500'>{errors.email?.message}</FormMessage>
-                </div>
-                <div className='flex space-y-2 flex-col'>
-                    <FormLabel htmlFor='subject'>Subject</FormLabel>
-                    <Input placeholder='Subject' id='subject' {...form.register('subject')} className='h-12 bg-black' />
-                    <FormMessage className='text-red-500'>{errors.subject?.message}</FormMessage>
-                </div>
-                <div className='flex space-y-2 flex-col'>
-                    <FormLabel htmlFor='details'>Project Details</FormLabel>
-                    <textarea
-                        id='details'
-                        placeholder='Project Details'
-                        {...form.register('details')}
-                        className='resize-none h-[120px] pt-2 bg-black flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50'
-                    />
-                    <FormMessage className='text-red-500'>{errors.details?.message}</FormMessage>
-                </div>
-                <button
-                    disabled={!!isSubmitting || !!isLoading}
-                    type='submit'
-                    className={cn(
-                        'h-12 w-full rounded-md bg-slate-200/75 hover:bg-slate-200 transition font-medium text-black disabled:opacity-50 disabled:bg-slate-200/75 disabled:cursor-not-allowed',
-                        isSubmitSuccessful && 'pointer-events-none'
-                    )}
-                >
-                    {isLoading || isSubmitting ? (
-                        <LuLoader className='mx-auto w-6 h-6 animate-spin [animation-duration:1.5s]' />
-                    ) : isSubmitSuccessful ? (
-                        'Sent ✅'
-                    ) : (
-                        'Submit'
-                    )}
-                </button>
-            </form>
-        </Form>
+                {isLoading || isSubmitting ? (
+                    <LuLoader className='w-5 h-5 animate-spin' />
+                ) : isSubmitSuccessful ? (
+                    'Message Sent ✓'
+                ) : (
+                    'Send Message'
+                )}
+            </button>
+        </form>
     )
 }
